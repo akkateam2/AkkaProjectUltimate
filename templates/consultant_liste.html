@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Liste
+{% endblock %}
+
+{% block titrePage %}
+    Consultant
+{% endblock %}
+
+{% block sousTitre %}
+    Liste de consultants
+{% endblock %}
+
+{% block extraCSS %}
+    <link rel="stylesheet" href="{% static 'css/jquery.dataTables.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.dataTables.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/buttons.dataTables.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/select.dataTables.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/editor.dataTables.min.css' %}">
+{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="#"><i class="fa fa-dashboard"></i> Accueil </a></li>
+    <li>Consultant</li>
+    <li class="active">liste</li>
+{% endblock %}
+
+{% block contenu %}
+    <div class="row">
+        <div class="col-xs-1">
+            <a href="{% url 'consultant-creer' %}" class="btn btn-success">Créer un consultant</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-body">
+                    <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="listeConsultant"
+                                       class="display responsive nowrap"
+                                       width="100%"
+                                       cellspacing="0">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting"
+                                                tabindex="0"
+                                                aria-controls="example2"
+                                                rowspan="1"
+                                                colspan="1"
+                                                aria-label="Rendering engine: activate to sort column ascending">
+                                                Nom
+                                            </th>
+                                            <th class="sorting"
+                                                tabindex="0"
+                                                aria-controls="example2"
+                                                rowspan="1"
+                                                colspan="1"
+                                                aria-label="Browser: activate to sort column ascending">
+                                                Prénom
+                                            </th>
+                                            <th class="sorting"
+                                                tabindex="0"
+                                                aria-controls="example2"
+                                                rowspan="1"
+                                                colspan="1"
+                                                aria-label="Platform(s): activate to sort column ascending">
+                                                Téléphone
+                                            </th>
+                                            <th class="sorting"
+                                                tabindex="0"
+                                                aria-controls="example2"
+                                                rowspan="1"
+                                                colspan="1"
+                                                aria-label="Engine version: activate to sort column ascending">
+                                                CdR
+                                            </th>
+                                            <th class="sorting_asc"
+                                                tabindex="0"
+                                                aria-controls="example2"
+                                                rowspan="1"
+                                                colspan="1"
+                                                aria-label="CSS grade: activate to sort column descending"
+                                                aria-sort="ascending">
+                                                BM
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for consultant in consultants %}
+                                            <tr role="row" id="{{ consultant.id }}" class="odd">
+                                                <td class="">{{ consultant.nom }}</td>
+                                                <td>{{ consultant.prenom }}</td>
+                                                <td>{{ consultant.telephone }}</td>
+                                                <td>
+                                                    {{ consultant.chargeDeRecrutement.nom }}
+                                                    {{ consultant.chargeDeRecrutement.prenom }}
+                                                </td>
+                                                <td class="sorting_1">
+                                                    {{ consultant.businessManager.nom }}
+                                                    {{ consultant.businessManager.prenom }}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+{% endblock %}
+
+{% block extraJS %}
+    <script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'js/dataTables.select.min.js' %}"></script>
+    <script src="{% static 'js/dataTables.editor.min.js' %}"></script>
+    <script>
+        table = $('#listeConsultant').DataTable( {
+            responsive: true,
+            select: true
+        } );
+        $('#listeConsultant tbody').on('click', 'tr', function () {
+            var id = $(this).attr('id')
+            window.location.href = id+"/detail/";
+        });
+    </script>
+{% endblock %}

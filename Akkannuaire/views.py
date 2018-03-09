@@ -176,9 +176,10 @@ def utilisateur_creer(request):
             if instance.type == "Chargé de recrutement":
                 cr = ChargeDeRecrutement()
                 cr.nom = instance.nom
-                superieur = ChargeDeRecrutement.objects.filter(id=instance.superieur).first()
-                if superieur:
-                    cr.parent = superieur
+                if instance.superieur:
+                    superieur = ChargeDeRecrutement.objects.filter(id=instance.superieur).first()
+                    if superieur:
+                        cr.parent = superieur
                 cr.prenom = instance.prenom
                 cr.type = instance.type
                 cr.mdp = instance.mdp
@@ -187,9 +188,10 @@ def utilisateur_creer(request):
                 cr.save()
             if instance.type == "Business Manager":
                 bm = BusinessManager()
-                superieur = BusinessManager.objects.filter(id=int(instance.superieur)).first()
-                if superieur:
-                    bm.parent = superieur
+                if instance.superieur:
+                    superieur = BusinessManager.objects.filter(id=int(instance.superieur)).first()
+                    if superieur:
+                        bm.parent = superieur
                 bm.nom = instance.nom
                 bm.prenom = instance.prenom
                 bm.type = instance.type

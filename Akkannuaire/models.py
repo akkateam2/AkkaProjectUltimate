@@ -19,7 +19,7 @@ TYPE = (
 )
 
 class Utilisateur(models.Model):
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
     mdp = models.CharField(max_length=50)
@@ -46,7 +46,7 @@ class Utilisateur(models.Model):
     def __str__(self):
         return "{} {}".format(self.nom, self.prenom)
 class BusinessManager(Utilisateur):
-    parent = models.ForeignKey("self", null=True, blank=True, on_delete=models.DO_NOTHING)
+    parent = models.ForeignKey("self", null=True, blank=True, on_delete=models.CASCADE)
 
 class AssistantAgence(Utilisateur):
     pass
@@ -58,7 +58,7 @@ class ResponsableRessourceHumaine(Utilisateur):
     pass
 
 class ChargeDeRecrutement(Utilisateur):
-    parent = models.ForeignKey("self", null=True, blank=True, on_delete=models.DO_NOTHING)
+    parent = models.ForeignKey("self", null=True, blank=True, on_delete=models.CASCADE)
 
 class ControleurDeGestion(Utilisateur):
     pass
@@ -66,9 +66,9 @@ class ControleurDeGestion(Utilisateur):
 class Consultant(models.Model):
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
-    businessManager = models.ForeignKey(BusinessManager, on_delete=models.DO_NOTHING)
-    chargeDeRecrutement = models.ForeignKey(ChargeDeRecrutement, on_delete=models.DO_NOTHING)
-    assistantDAgence = models.ForeignKey(AssistantAgence, on_delete=models.DO_NOTHING)
+    businessManager = models.ForeignKey(BusinessManager, on_delete=models.CASCADE, null=True, blank=True)
+    chargeDeRecrutement = models.ForeignKey(ChargeDeRecrutement, on_delete=models.CASCADE, null=True, blank=True)
+    assistantDAgence = models.ForeignKey(AssistantAgence, on_delete=models.CASCADE, null=True, blank=True)
     dateNaissance = models.DateField()
     photo = models.ImageField(upload_to='uploads/')
     cv = models.FileField(upload_to='uploads/')

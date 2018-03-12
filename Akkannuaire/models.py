@@ -9,6 +9,18 @@ RRH = "Responsable des ressources humaines"
 CG = "Contrôleur de gestion"
 ADMIN = "Administrateur"
 
+B2MOIN = "Niveau B+2/3 ou inférieur"
+B23 = "B+2/3"
+B5 = "B+5"
+B7 = "B+7 ou plus"
+
+NIVEAU = (
+    (B2MOIN, "Niveau B+2/3 ou inférieur"),
+    (B23, "B+2/3"),
+    (B5, "B+5"),
+    (B7, "B+7 ou plus"),
+)
+
 TYPE = (
     (BM, "Business Manager"),
     (CdR, "Chargé de recrutement"),
@@ -70,15 +82,19 @@ class Consultant(models.Model):
     chargeDeRecrutement = models.ForeignKey(ChargeDeRecrutement, on_delete=models.CASCADE, null=True, blank=True)
     assistantDAgence = models.ForeignKey(AssistantAgence, on_delete=models.CASCADE, null=True, blank=True)
     dateNaissance = models.DateField()
+    finPeriodeEssai = models.DateField(null=True, blank=True)
     photo = models.ImageField(upload_to='uploads/')
+    dossierCompetence = models.ImageField(upload_to='uploads/')
     cv = models.FileField(upload_to='uploads/')
     dateEntreeDansLeGroupe = models.DateField()
     francais = models.BooleanField()
     dateValiditeTitreDeSejour = models.DateField()
     salaire = models.IntegerField()
     telephone = models.IntegerField()
+    emailAKKA = models.EmailField(null=True, blank=True)
+    emailPerso = models.EmailField(null=True, blank=True)
     adresse = models.CharField(max_length=150)
     codePostal = models.IntegerField()
     ville = models.CharField(max_length=100)
-    anneeExperience = models.IntegerField()
-    niveauDiplome = models.CharField(max_length=100)
+    anneeExperience = models.DateField(null=True, blank=True)
+    niveauDiplome = models.CharField(max_length=100, choices=NIVEAU, default=B5)

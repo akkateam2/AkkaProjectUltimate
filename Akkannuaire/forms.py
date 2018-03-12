@@ -27,23 +27,28 @@ class ConsultantForm(forms.ModelForm):
             if field.label in ["ChargeDeRecrutement", "AssistantDAgence", "BusinessManager"]:
                 field.widget.attrs['class'] = 'form-control select2'
             else:
-                if field.label in ["DateNaissance", "DateEntreeDansLeGroupe", "DateValiditeTitreDeSejour"]:
+                if field.label in ["DateNaissance", "DateEntreeDansLeGroupe", "DateValiditeTitreDeSejour", "AnneeExperience", "FinPeriodeEssai"]:
                     field.widget.attrs['class'] = 'form-control pull-right'
                 else:
                     if field.label != "Francais":
-                        if field.label != "Photo" and field.label != "Cv":
+                        if field.label != "Photo" and field.label != "Cv" and field.label != "DossierCompetence":
                             field.widget.attrs['class'] = 'form-control'
     class Meta:
         model = Consultant
         fields = [
             'nom',
             'cv',
+            'dossierCompetence',
             'photo',
             'prenom',
             'businessManager',
             'chargeDeRecrutement',
+            'emailAKKA',
+            'emailPerso',
+            'chargeDeRecrutement',
             "assistantDAgence",
             "niveauDiplome",
+            "finPeriodeEssai",
             "anneeExperience",
             "ville",
             "codePostal",

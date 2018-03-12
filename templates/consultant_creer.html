@@ -27,22 +27,6 @@
 {% endblock %}
 
 {% block contenu %}
-    <div class="box box-primary box-body">
-        {% if form.errors %}
-            {% for field in form %}
-                {% for error in field.errors %}
-                    <div class="alert alert-danger">
-                        <strong>{{ error|escape }}</strong>
-                    </div>
-                {% endfor %}
-            {% endfor %}
-            {% for error in form.non_field_errors %}
-                <div class="alert alert-danger">
-                    <strong>{{ error|escape }}</strong>
-                </div>
-            {% endfor %}
-        {% endif %}
-    </div>
     <div>
         <form action="." class="form-horizontal" method="post" enctype="multipart/form-data">{% csrf_token %}
             <div class="col-md-8 col-md-offset-2">
@@ -97,6 +81,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="nom" class="col-sm-3 control-label">Dossier de compétence</label>
+                                <div class="col-sm-9">
+                                    {{ form.dossierCompetence }}
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="nom" class="col-sm-3 control-label">Ville</label>
                                 <div class="col-sm-9">
                                     {{ form.ville }}
@@ -109,7 +99,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="nom" class="col-sm-3 control-label">Origine</label>
+                                <label for="nom" class="col-sm-3 control-label">Français</label>
                                 <div class="col-sm-9">
                                     {{ form.francais }}
                                 </div>
@@ -121,13 +111,24 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="nom" class="col-sm-3 control-label">A AKKA depuis</label>
+                                <label for="nom" class="col-sm-3 control-label">AKKA depuis</label>
                                 <div class="col-sm-9">
                                     <div class="input-group date">
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
                                         {{ form.dateEntreeDansLeGroupe }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nom" class="col-sm-3 control-label">Fin de la période d'essai</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        {{ form.finPeriodeEssai }}
                                     </div>
                                 </div>
                             </div>
@@ -143,10 +144,35 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="nom" class="col-sm-3 control-label">Salaire</label>
+                                <label for="nom" class="col-sm-3 control-label">Année de la 1ère expérience</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        {{ form.anneeExperience }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nom" class="col-sm-3 control-label">Salaire annuel</label>
 
                                 <div class="col-sm-9">
                                     {{ form.salaire }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nom" class="col-sm-3 control-label">Email AKKA</label>
+
+                                <div class="col-sm-9">
+                                    {{ form.emailAKKA }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nom" class="col-sm-3 control-label">Email personnel</label>
+
+                                <div class="col-sm-9">
+                                    {{ form.emailPerso }}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -173,12 +199,6 @@
                                     {{ form.niveauDiplome }}
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="nom" class="col-sm-3 control-label">Année(s) d'expérience</label>
-                                <div class="col-sm-9">
-                                    {{ form.anneeExperience }}
-                                </div>
-                            </div>
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer">
@@ -203,13 +223,24 @@
         $('.select2').select2();
 
         $('#id_dateNaissance').datepicker({
-            autoclose: true
+            autoclose: true,
+            startDate: "01/01/1995"
         });
         $('#id_dateEntreeDansLeGroupe').datepicker({
-            autoclose: true
+            autoclose: true,
+            startDate: "01/01/1995"
         });
         $('#id_dateValiditeTitreDeSejour').datepicker({
-            autoclose: true
+            autoclose: true,
+            startDate: "01/01/1995"
+        });
+        $('#id_anneeExperience').datepicker({
+            autoclose: true,
+            startDate: "01/01/1995"
+        });
+        $('#id_finPeriodeEssai').datepicker({
+            autoclose: true,
+            startDate: "01/01/1995"
         });
     </script>
 {% endblock %}

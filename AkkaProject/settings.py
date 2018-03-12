@@ -145,3 +145,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media_akka")
 
 
 LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/akkannuaire/home/"

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 BM = "Business Manager"
 CdR = "Chargé de recrutement"
@@ -81,7 +82,8 @@ class Consultant(models.Model):
     businessManager = models.ForeignKey(BusinessManager, on_delete=models.CASCADE, null=True, blank=True)
     chargeDeRecrutement = models.ForeignKey(ChargeDeRecrutement, on_delete=models.CASCADE, null=True, blank=True)
     assistantDAgence = models.ForeignKey(AssistantAgence, on_delete=models.CASCADE, null=True, blank=True)
-    dateNaissance = models.DateField()
+    #dateNaissance = models.DateField(widget=extras.SelectDateWidget(years='1995'))
+    dateNaissance= models.DateField()
     finPeriodeEssai = models.DateField(null=True, blank=True)
     photo = models.ImageField(upload_to='uploads/')
     dossierCompetence = models.ImageField(upload_to='uploads/')
@@ -90,7 +92,7 @@ class Consultant(models.Model):
     francais = models.BooleanField()
     dateValiditeTitreDeSejour = models.DateField()
     salaire = models.IntegerField()
-    telephone = models.IntegerField()
+    telephone = models.CharField(max_length=100)
     emailAKKA = models.EmailField(null=True, blank=True)
     emailPerso = models.EmailField(null=True, blank=True)
     adresse = models.CharField(max_length=150)

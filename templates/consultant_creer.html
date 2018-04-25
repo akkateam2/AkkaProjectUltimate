@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="{% static 'select2/dist/css/select2.min.css' %}">
     <!-- bootstrap datepicker -->
     <link rel="stylesheet" href="{% static 'bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' %}">
-    
+    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/moment-2.4.0.js"></script>
+<script type="text/javascript" src="scripts/bootstrap-datetimepicker.js"></script>
 {% endblock %}
 
 {% block title %}
@@ -53,28 +55,16 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="nom" class="col-sm-3 control-label">Date de naissance</label>  
-                                 <div class="col-sm-9">  
-                                  <!--  <div class="input-group date"> -->
-                                     <input type="text" name="birthdate" value="01/01/1995"> 
-	                                   <script type="text/javascript" >
-	                                   $(function(){
-		                                   	$('input[name="birthdate"]').daterangepicker({
-		                                           singleDatePicker:true,
-		                                           showDropdowns:true,
-	                                         },
-	                                         function(start, end, label){
-	                                	       var years = moment().diff(start, 'years');
-	                                	       alert("you are "+ years +"years old.");
-	                                	   
-	                                          });
-	                                   
-	                                   });
-	                                   
-	                                   </script>
+                                <label for="nom" class="col-sm-3 control-label">Date de naissance</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        
                                         {{ form.dateNaissance }}
-                               <!--     </div> -->
-                                </div> 
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="nom" class="col-sm-3 control-label">Adresse</label>
@@ -147,7 +137,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="nom" class="col-sm-3 control-label">Date validité titre</label>
+                                <label for="nom" class="col-sm-3 control-label">Date vailidité titre</label>
                                 <div class="col-sm-9">
                                     <div class="input-group date">
                                         <div class="input-group-addon">
@@ -240,7 +230,6 @@
             autoclose: true,
             startDate: "01/01/1995"
         });
-        
         $('#id_dateEntreeDansLeGroupe').datepicker({
             autoclose: true,
             startDate: "01/01/1995"

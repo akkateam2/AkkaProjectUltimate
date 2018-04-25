@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     #django restframework
     'rest_framework',
+    'rest_framework_sso',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'AkkaProject.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'AkkaProject.urls'
@@ -85,10 +87,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'AkkannuaireBD',
-        'USER': 'root',
-        'PASSWORD':'root',
+        'USER':'root',
+        'PASSWORD': 'root',
         'HOST':'',
-        'PORT':''
+        'PORT':'',
     }
 }
 
@@ -138,7 +140,12 @@ STATICFILES_DIRS = [
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
+    
     # or allow read-only access for unauthenticated users.
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_sso.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+         ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
@@ -148,5 +155,11 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media_akka")
 
 
-LOGIN_URL = "/login/"
-LOGIN_REDIRECT_URL = "/akkannuaire/home/"
+LOGIN_EXEMPT_URLS = (
+    '/akkannuaire/home/',
+    '/akkannuaire/consultant/'
+    ) 
+# allow any URL under /legal/*
+
+LOGIN_URL ='/login/'
+LOGIN_REDIRECT_URL ='/akkannuaire/home/'

@@ -6,15 +6,15 @@ from .forms import *
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-@login_required(login_url="/login/")
+# @login_required(login_url='/login/')
 def home(request):
     return render(request, 'base.html')
 
-@login_required(login_url="/login/")
+# @login_required(login_url='/login/')
 def login(request):
-    return render(request, 'registrations/login.html')
+    return render(request, 'registration/login.html')
 
-@login_required(login_url="/login/")
+# @login_required(login_url='/login/')
 def consultant_liste(request):
     consultants = Consultant.objects.all()
     content = {
@@ -23,7 +23,7 @@ def consultant_liste(request):
 
     return render(request, 'consultant_liste.html', content)
 
-@login_required(login_url="/login/")
+# @login_required(login_url='/login/')
 def consultant_detail(request, idConsultant=None):
     consultant = Consultant.objects.filter(id=idConsultant).first()
     content = {
@@ -31,7 +31,7 @@ def consultant_detail(request, idConsultant=None):
     }
     return render(request, 'consultant_detail.html', content)
 
-@login_required(login_url="/login/")
+# @login_required(login_url='/login/')
 def consultant_modifier(request, idConsultant=None):
     consultant = Consultant.objects.filter(id=idConsultant).first()
     form = ConsultantForm(
@@ -53,7 +53,7 @@ def consultant_modifier(request, idConsultant=None):
     }
     return render(request, 'consultant_modifier.html', content)
 
-@login_required(login_url="/login/")
+# @login_required(login_url='/login/')
 def consultant_creer(request):
     form = ConsultantForm(request.POST or None, request.FILES)
     if request.POST:
@@ -66,7 +66,7 @@ def consultant_creer(request):
     }
     return render(request, 'consultant_creer.html', content)
 
-@login_required(login_url="/login/")
+# @login_required(login_url='/login/')
 def utilisateur_liste(request):
     users = Utilisateur.objects.all()
     for user in users:
@@ -76,7 +76,7 @@ def utilisateur_liste(request):
     }
     return render(request, 'utilisateur_liste.html', content)
 
-@login_required(login_url="/login/")
+# @login_required(login_url='/login/')
 def utilisateur_detail(request, idUser=None):
     utilisateur = Utilisateur.objects.filter(id=idUser).first()
     utilisateur.get_superieur()
@@ -91,7 +91,7 @@ def utilisateur_detail(request, idUser=None):
     }
     return render(request, 'utilisateur_detail.html', content)
 
-@login_required(login_url="/login/")
+# @login_required(login_url='/login/')
 def utilisateur_modifier(request, idUser=None):
     utilisateur = Utilisateur.objects.filter(id=idUser).first()
     utilisateur.get_superieur()
@@ -175,7 +175,7 @@ def utilisateur_modifier(request, idUser=None):
     }
     return render(request, 'utilisateur_modifier.html', content)
 
-@login_required(login_url="/login/")
+# @login_required(login_url='/login/')
 def utilisateur_creer(request):
     form = UtilisateurForm()
     if request.POST:

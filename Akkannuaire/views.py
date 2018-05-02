@@ -108,7 +108,8 @@ def utilisateur_modifier(request, idUser=None):
                 password="12345678",
                 email="hello@la.com",
                 first_name=instance.nom,
-                last_name=instance.prenom
+                last_name=instance.prenom,
+                instance_type = instance.type 
             )
             user.is_staff = True
             user.save()
@@ -190,7 +191,8 @@ def utilisateur_creer(request):
                 password="12345678",
                 email="hello@la.com",
                 first_name=instance.nom,
-                last_name=instance.prenom
+                last_name=instance.prenom,
+                instance_type = instance.type
             )
             user.is_staff = True
             user.save()

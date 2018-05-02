@@ -159,6 +159,7 @@ LOGIN_EXEMPT_URLS = (
     '/akkannuaire/home/',
     '/akkannuaire/consultant/'
     ) 
+LOGIN_ADMIN = '/admin/'
 # allow any URL under /legal/*
 
 LOGIN_URL ='/login/'

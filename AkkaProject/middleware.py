@@ -32,6 +32,7 @@ class LoginRequiredMiddleware(object):
         path = request.path_info.lstrip('/')
         print(path)
         url_is_exempt = any(url.match(path) for url in EXEMPT_URLS)
+        ull_adm = any(url.match(path) for url in EXEMPT_URLS)
         
         if request.user.is_authenticated and url_is_exempt:
           return redirect(settings.LOGIN_REDIRECT_URL)

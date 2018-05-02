@@ -188,7 +188,7 @@ desired effect
                             <li class="user-header">
 
                                 <p>
-                                    {% block fullname %}{{request.user.first_name}} {{request.user.last_name }}{% endblock %} - {% block typeUSer %}Type de poste{% endblock %}
+                                    {% block fullname %}{{request.user.first_name}} {{request.user.last_name }}{% endblock %} - {% block typeUSer %}{{request.user.instance_type}}{% endblock %}
                                     <small>{% block menbreDepuis %}Membre depuis ...{% endblock %}</small>
                                 </p>
                             </li>

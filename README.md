@@ -41,10 +41,10 @@ $  easy_install --upgrade pytz
 
 -mysql database
 
-it is need to install mysql us database used
+it is need to install mysql as database used
 
 $ sudo apt-get install mysql-server
-it is necessary to use "root" us user and password because they are already define in the settings.py file of django project. If else, we can modify in this file the password of the database.
+it is necessary to use "root" as user and password because they are already define in the settings.py file of django project. If else, we can modify in this file the password of the database.
 $ sudo apt-get install python-mysqldb
 $ sudo service mysql status
 

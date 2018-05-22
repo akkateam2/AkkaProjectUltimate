@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block breadcrumb %}
-    <li><a href="#"><i class="fa fa-dashboard"></i> Accueil </a></li>
+    <li><a href="{% url 'home' %}"><i class="fa fa-dashboard"></i> Accueil </a></li>
     <li>Utilisateur</li>
     <li class="active">liste</li>
 {% endblock %}
@@ -68,7 +68,7 @@
                                                 rowspan="1"
                                                 colspan="1"
                                                 aria-label="Engine version: activate to sort column ascending">
-                                                Type
+                                                Fonction
                                             </th>
                                             <th class="sorting_asc"
                                                 tabindex="0"
@@ -96,7 +96,7 @@
                                                 <td class="">{{ user.nom }}</td>
                                                 <td>{{ user.prenom }}</td>
                                                 <td>{{ user.type }}</td>
-                                                <td>{{ user.mdp }}</td>
+                                                <td type="password">{{ user.mdp }}</td>
                                                 <td class="sorting_1">{{ user.superieur }}</td>
                                             </tr>
                                         {% endfor %}

@@ -9,7 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AKKAnuaire | {% block title %}Modifier{% endblock %}</title>
+    <title>AKKAnnuaire | {% block title %}Modifier{% endblock %}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
@@ -195,7 +195,7 @@ desired effect
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="{% url 'utilisateur-detail' user.id %}" class="btn btn-default btn-flat">Mon compte</a>
+                                    <a href="{% url 'user-detail' user.id %}" class="btn btn-default btn-flat">Mon compte</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{% url 'logout' %}" class="btn btn-default btn-flat">Se déconnecter</a>
@@ -218,11 +218,11 @@ desired effect
         <section class="sidebar">
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">HEADER</li>
+                <!-- <li class="header">HEADER</li> -->
                 <!-- Optionally, you can add icons to the links -->
-                <li><a href="{% url 'consultant-liste' %}"><i class="fa fa-link"></i> <span>Liste de consultants</span></a></li>
+                <li><a href="{% url 'consultant-liste' %}"><i class="fa fa-link"></i> <span><p style="font-weight:bolder">Liste des consultants</p></span></a></li>
                 {% if request.user.is_authenticated %}
-                    <li class="active"><a href="{% url 'utilisateur-liste' %}"><i class="fa fa-link"></i> <span>Liste d'utilisateurs</span></a></li>
+                    <li><a href="{% url 'utilisateur-liste' %}"><i class="fa fa-link"></i> <span><strong><p style="font-weight:bolder">Liste d'utilisateurs</p></span></a></li>
                 {% endif %}
             </ul>
             <!-- /.sidebar-menu -->
@@ -235,21 +235,20 @@ desired effect
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                {% block titrePage %}Type de user{% endblock %}
-                <small>{% block sousTitre %}Type de page{% endblock %}</small>
+                {% block titrePage %}Bienvenue dans AKKAnnuaire{% endblock %}
             </h1>
-            <ol class="breadcrumb">
+            <!-- <ol class="breadcrumb">
                 {% block breadcrumb %}
                     <li><a href="#"><i class="fa fa-dashboard"></i> bread</a></li>
                     <li class="active">crumb</li>
                 {% endblock %}
-            </ol>
+            </ol> -->
         </section>
 
         <!-- Main content -->
         <section class="content container-fluid">
             {% block contenu %}
-                contenu de la page
+                <p><em>Annuaire des consultants</em> </p>
             {% endblock %}
         </section>
         <!-- /.content -->

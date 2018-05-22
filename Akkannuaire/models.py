@@ -1,5 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import Usere
+from django.contrib.auth.models import User
+
+
+
 
 
 # Create your models here.
@@ -82,8 +85,11 @@ class Consultant(models.Model):
     businessManager = models.ForeignKey(BusinessManager, on_delete=models.CASCADE, null=True, blank=True)
     chargeDeRecrutement = models.ForeignKey(ChargeDeRecrutement, on_delete=models.CASCADE, null=True, blank=True)
     assistantDAgence = models.ForeignKey(AssistantAgence, on_delete=models.CASCADE, null=True, blank=True)
-    #dateNaissance = models.DateField(widget=extras.SelectDateWidget(years='1995'))
+    #dateNaissance = models.DateField(widget=forms.SelectDateWidget(years='1995'))
     dateNaissance= models.DateField()
+    #cur_year = datetime.datetime.today().year
+    #year_range = tuple([i for i in range(cur_year - 2, cur_year + 2)])
+    #dateNaissance = models.DateField(initial=datetime.date.today() - datetime.timedelta(days=7),widget=forms.SelectDateWidget(years=year_range))
     finPeriodeEssai = models.DateField(null=True, blank=True)
     photo = models.ImageField(upload_to='uploads/')
     dossierCompetence = models.ImageField(upload_to='uploads/')

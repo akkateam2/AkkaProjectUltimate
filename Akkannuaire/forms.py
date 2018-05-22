@@ -8,7 +8,8 @@ class UtilisateurForm(forms.ModelForm):
         widgets = {
             "nom": forms.TextInput(attrs={"class": "form-control", "id": "nom"}),
             "prenom": forms.TextInput(attrs={"class": "form-control", "id": "prenom"}),
-            "mdp": forms.TextInput(attrs={"class": "form-control", "id": "mdp"}),
+            #"mdp": forms.TextInput(attrs={"class": "form-control", "id": "mdp"}),
+            "mdp" : forms.PasswordInput(attrs={"class": "form-control", "id": "mdp"}),
             "superieur": forms.TextInput(attrs={"class": "form-control", "ng-model": "superieurModel", "id":"superieur_id"}),
             "type": forms.Select(
                 attrs={

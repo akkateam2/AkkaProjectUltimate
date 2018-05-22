@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from django.db.models import Q
 from .forms import *
 from django.contrib.auth.decorators import login_required
+from django.core.mail import EmailMessage
 
 # Create your views here.
 # @login_required(login_url='/login/')
@@ -53,6 +54,24 @@ def consultant_modifier(request, idConsultant=None):
     }
     return render(request, 'consultant_modifier.html', content)
 
+
+def send_email(request, idConsultant=None):
+    consultant = Consultant.objects.filter(id=idConsultant).first()
+    form = ConsultantForm(
+        request.POST or None,
+        
+        instance=consultant,
+        )
+    if request.POST:
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+            return redirect('consultant-liste')
+    content = {
+        "form": form
+    }
+    return render(request, 'send_email.html', content)
+    
 # @login_required(login_url='/login/')
 def consultant_creer(request):
     form = ConsultantForm(request.POST or None, request.FILES)
@@ -91,6 +110,13 @@ def utilisateur_detail(request, idUser=None):
     }
     return render(request, 'utilisateur_detail.html', content)
 
+def user_detail(request, user_id):
+    user = User.objects.get(id=user_id)
+    content = {
+        "user": user,
+    }
+    return render(request, 'user_detail.html', content)
+
 # @login_required(login_url='/login/')
 def utilisateur_modifier(request, idUser=None):
     utilisateur = Utilisateur.objects.filter(id=idUser).first()
@@ -108,8 +134,7 @@ def utilisateur_modifier(request, idUser=None):
                 password="12345678",
                 email="hello@la.com",
                 first_name=instance.nom,
-                last_name=instance.prenom,
-                instance_type = instance.type 
+                last_name=instance.prenom
             )
             user.is_staff = True
             user.save()
@@ -191,8 +216,7 @@ def utilisateur_creer(request):
                 password="12345678",
                 email="hello@la.com",
                 first_name=instance.nom,
-                last_name=instance.prenom,
-                instance_type = instance.type
+                last_name=instance.prenom
             )
             user.is_staff = True
             user.save()
@@ -260,3 +284,12 @@ def utilisateur_creer(request):
         "form": form,
     }
     return render(request, 'utilisateur_creer.html', content)
+
+def utilisateur_supprimer(request,idUser=None):
+     utilisateur = Utilisateur.objects.filter(id=idUser).first()
+     utilisateur.delete()
+     return render(request, 'utilisateur_supprimer.html', content)
+    
+    
+    
+    

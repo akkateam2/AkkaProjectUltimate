@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block breadcrumb %}
-    <li><a href="#"><i class="fa fa-dashboard"></i> Accueil </a></li>
+    <li><a href="{% url 'home' %}"><i class="fa fa-dashboard"></i> Accueil </a></li>
     <li>Consultant</li>
     <li class="active">liste</li>
 {% endblock %}
@@ -75,8 +75,16 @@
                                                 aria-controls="example2"
                                                 rowspan="1"
                                                 colspan="1"
+                                                aria-label="Platform(s): activate to sort column ascending">
+                                                Mail
+                                            </th>
+                                            <th class="sorting"
+                                                tabindex="0"
+                                                aria-controls="example2"
+                                                rowspan="1"
+                                                colspan="1"
                                                 aria-label="Engine version: activate to sort column ascending">
-                                                CdR
+                                                Chargé de recrutement
                                             </th>
                                             <th class="sorting_asc"
                                                 tabindex="0"
@@ -85,7 +93,7 @@
                                                 colspan="1"
                                                 aria-label="CSS grade: activate to sort column descending"
                                                 aria-sort="ascending">
-                                                BM
+                                                Business Manager
                                             </th>
                                         </tr>
                                     </thead>
@@ -95,6 +103,9 @@
                                                 <td class="">{{ consultant.nom }}</td>
                                                 <td>{{ consultant.prenom }}</td>
                                                 <td>{{ consultant.telephone }}</td>
+                                                 <td class="sorting_1">
+                                                   <a href="{% url 'send-email' consultant.id %}" class="fa fa-envelope-o"></a>
+                                                </td>
                                                 <td>
                                                     {{ consultant.chargeDeRecrutement.nom }}
                                                     {{ consultant.chargeDeRecrutement.prenom }}

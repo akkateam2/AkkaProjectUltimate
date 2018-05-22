@@ -3,6 +3,7 @@ from django.conf import settings
 from re import compile
 from django.template.base import kwarg_re
 from django.shortcuts import redirect
+from django.contrib import admin
 
 EXEMPT_URLS = [compile(settings.LOGIN_URL.lstrip('/'))]
 if hasattr(settings, 'LOGIN_EXEMPT_URLS'):
@@ -32,11 +33,18 @@ class LoginRequiredMiddleware(object):
         path = request.path_info.lstrip('/')
         print(path)
         url_is_exempt = any(url.match(path) for url in EXEMPT_URLS)
-        ull_adm = any(url.match(path) for url in EXEMPT_URLS)
-        
+        url_is_admin = request.get_full_path() in settings.ADMIN_URL
+        print(url_is_admin)
+        # if not request.user.is_authenticated and url_is_admin:
+          # print('request.user.is_authenticated and url_is_admin')
+           # return redirect('/admin/')
         if request.user.is_authenticated and url_is_exempt:
-          return redirect(settings.LOGIN_REDIRECT_URL)
+            print('request.user.is_authenticated and url_is_exempt')
+            return redirect(settings.LOGIN_REDIRECT_URL)
+        
         elif request.user.is_authenticated or url_is_exempt:
-           return None
+           
+             return None
         else:
-           return redirect(settings.LOGIN_URL)
+            return redirect(settings.LOGIN_URL)
+        

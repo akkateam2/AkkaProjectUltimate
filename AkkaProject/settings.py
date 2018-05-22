@@ -153,14 +153,14 @@ REST_FRAMEWORK = {
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media_akka")
-
+ADMIN_URL='/admin/'
 
 LOGIN_EXEMPT_URLS = (
     '/akkannuaire/home/',
     '/akkannuaire/consultant/'
     ) 
-LOGIN_ADMIN = '/admin/'
 # allow any URL under /legal/*
 
 LOGIN_URL ='/login/'
 LOGIN_REDIRECT_URL ='/akkannuaire/home/'
+                     

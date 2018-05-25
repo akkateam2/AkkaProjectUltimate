@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 
     #django restframework
     'rest_framework',
-    'rest_framework_sso',
+    #'rest_framework_sso',
 ]
 
 MIDDLEWARE = [
@@ -143,7 +143,7 @@ REST_FRAMEWORK = {
     
     # or allow read-only access for unauthenticated users.
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_sso.authentication.JWTAuthentication',
+        #'rest_framework_sso.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
          ),
     'DEFAULT_PERMISSION_CLASSES': [

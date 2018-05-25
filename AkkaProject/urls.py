@@ -18,7 +18,7 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
-from rest_framework_sso.views import obtain_session_token, obtain_authorization_token
+#from rest_framework_sso.views import obtain_session_token, obtain_authorization_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,8 +26,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('akkannuaire/', include('Akkannuaire.urls')),
     path('akkannuaire/api/', include('Akkannuaire.api.urls')),
-    path('session/', obtain_session_token),
-    path('authorize/', obtain_authorization_token),
+   # path('session/', obtain_session_token),
+   # path('authorize/', obtain_authorization_token),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

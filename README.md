@@ -4,7 +4,7 @@
 -python
 You must install python. In our project we use the version pythoon=3.5.0
 
-$ sudo apt install python3.5 
+$ sudo apt-get install python3.5 
 
 By default python is installed on linux (ubuntu)
 verify the version already installed :
@@ -46,6 +46,7 @@ it is need to install mysql as database used
 $ sudo apt-get install mysql-server
 it is necessary to use "root" as user and password because they are already define in the settings.py file of django project. If else, we can modify in this file the password of the database.
 $ sudo apt-get install python-mysqldb
+$pip install mysqlclient
 $ sudo service mysql status
 
 
@@ -67,8 +68,8 @@ After connection to mysql database, it is necessary to create a database of the 
 mysql>CREATE DATABASE AkkannuaireBD
 
 migrate django project to mysql database using some below commands :
-$ sudo python3 manage.py migrate
-$ sudo python3 manage.py makemigrations
+$ sudo python3 manage.py migrate  or    $./manage.py migrate
+$ sudo python3 manage.py makemigrations $./manage.py makemigrations
 
 if you wan to start the django project , it is need to create a user using the command line just so we can test the login and logout pages.
 
@@ -78,6 +79,10 @@ Then enter the login information of the superuser who will be need to connect of
 
 you can use this below link to understand login administration with django.
 https://simpleisbetterthancomplex.com/tutorial/2016/06/27/how-to-use-djangos-built-in-login-system.html
+
+user this command to run script python 
+
+$python3 manage.py runserver 
 
 -login 
 Enter in the navigator the url to connect to application. Please use the name and password created while creating superuser previously. 

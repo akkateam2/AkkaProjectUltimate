@@ -32,7 +32,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="box box-info">
                     <div class="box-header with-border text-center">
-                        <h3 class="box-title">Modifier un consultant</h3>
+                        <h3 class="box-title">Modifier</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -81,6 +81,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="nom" class="col-sm-3 control-label">Dossier de compétences</label>
+                                <div class="col-sm-9">
+                                    {{ form.dossierCompetence }}
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
                                 <label for="nom" class="col-sm-3 control-label">Ville</label>
                                 <div class="col-sm-9">
                                     {{ form.ville }}
@@ -92,12 +99,12 @@
                                     {{ form.codePostal }}
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!--  <div class="form-group">
                                 <label for="nom" class="col-sm-3 control-label">Origine</label>
                                 <div class="col-sm-9">
                                     {{ form.francais }}
-                                </div>
-                            </div>
+                                </div> 
+                            </div> -->
                             <div class="form-group">
                                 <label for="nom" class="col-sm-3 control-label">Téléphone</label>
                                 <div class="col-sm-9">
@@ -116,7 +123,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="nom" class="col-sm-3 control-label">Date vailidité titre</label>
+                                <label for="nom" class="col-sm-3 control-label">Date validité titre</label>
                                 <div class="col-sm-9">
                                     <div class="input-group date">
                                         <div class="input-group-addon">

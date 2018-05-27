@@ -33,7 +33,7 @@ class ConsultantForm(forms.ModelForm):
                 else:
                     if field.label != "Francais":
                         if field.label != "Photo" and field.label != "Cv" and field.label != "DossierCompetence":
-                            field.widget.attrs['class'] = 'form-control'
+                            field.widget.attrs['class'] = 'form-control pull-right'
     class Meta:
         model = Consultant
         fields = [

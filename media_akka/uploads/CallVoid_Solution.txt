@@ -1,0 +1,39 @@
+in c JNI Ijni.cpp
+env->CallVoidMethod(S_thisObj, S_JavaOPTAPRecvStatusCBMethodID, source_address, status->scrat_len, status->scrat_crc, status->scrat_seq_number, status->scrat_type, status->scrat_status, status->processed_scrat_len, status->processed_scrat_crc, 
+status->processed_scrat_seq_number, status->firmware_memory_area_id,status->firmware_major_ver, status->firmware_minor_ver, status->firmware_maint_ver, status->firmware_dev_ver, request_timeout);
+
+in wirepasAdapterImpl class
+
+@Override
+public void javaOtapRecvStatusCallBack(int source_address, int scrat_len, int scrat_crc, int scrat_seq_number, int scrat_type, int scrat_status,
+int processed_scrat_len, int processed_scrat_crc, int processed_scrat_seq_number, int firmware_memory_area_id, int firmware_major_ver,
+int firmware_minor_ver, int firmware_maint_ver, int firmware_dev_ver, int request_timeout) {
+		logger.info("JAVA wirepasAdapter: Remote status OTAP call back : source addr= " + source_address + ", statusOTAP : scrat_len= "
+		+ scrat_len+" ,scrat_crc =" + scrat_crc+ ",scrat_seq_number= " +scrat_seq_number+" , scrat_type ="+scrat_type+" ,.....request_timeout = " +request_timeout);
+		if(dataReceivedStatusCallBack!=null) {
+		dataReceivedStatusCallBack.onRemoteStatus(source_address, scrat_len, scrat_crc, scrat_seq_number, scrat_type, scrat_status,
+processed_scrat_len, processed_scrat_crc, processed_scrat_seq_number, firmware_memory_area_id, firmware_major_ver,
+firmware_minor_ver, firmware_maint_ver, firmware_dev_ver, request_timeout);
+		}
+}
+
+in IdataSatusOTAPReceived class
+
+public void onRemoteStatus(int source_address, int scrat_len, int scrat_crc, int scrat_seq_number, int scrat_type, int scrat_status,
+int processed_scrat_len, int processed_scrat_crc, int processed_scrat_seq_number, int firmware_memory_area_id, int firmware_major_ver,
+int firmware_minor_ver, int firmware_maint_ver, int firmware_dev_ver, int request_timeout);
+
+in WirepasOTAP class
+
+public void onRemoteStatus(int source_address, int scrat_len, int scrat_crc, int scrat_seq_number, int scrat_type, int scrat_status,
+int processed_scrat_len, int processed_scrat_crc, int processed_scrat_seq_number, int firmware_memory_area_id, int firmware_major_ver,
+int firmware_minor_ver, int firmware_maint_ver, int firmware_dev_ver, int request_timeout){
+
+logger.info("JAVA : Remote status OTAP call back : source addr= " + source_address + ", statusOTAP : scrat_len= "
+		+ scrat_len+" ,scrat_crc =" + scrat_crc+ ",scrat_seq_number= " +scrat_seq_number+" , scrat_type ="+scrat_type+" ,.....request_timeout = " +request_timeout);
+
+
+
+
+}
+

@@ -38,8 +38,7 @@ class Migration(migrations.Migration):
                 ('anneeExperience', models.DateField(blank=True)),
                 ('niveauDiplome', models.CharField(choices=[('Niveau B+2/3 ou inférieur', 'Niveau B+2/3 ou inférieur'), ('B+2/3', 'B+2/3'), ('B+5', 'B+5'), ('B+7 ou plus', 'B+7 ou plus')], default='B+5', max_length=100)),
             ],
-        ),
-        migrations.CreateModel(
+        ),        migrations.CreateModel(
             name='Utilisateur',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),

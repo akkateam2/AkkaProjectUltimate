@@ -119,87 +119,25 @@ def user_detail(request, user_id):
 
 # @login_required(login_url='/login/')
 def utilisateur_modifier(request, idUser=None):
+    
     utilisateur = Utilisateur.objects.filter(id=idUser).first()
     utilisateur.get_superieur()
-    form = UtilisateurForm(instance=utilisateur)
+    form = UtilisateurForm(
+        request.POST or None,
+        request.FILES or None,
+        instance=utilisateur,
+       )
     if request.POST:
-        form = UtilisateurForm(request.POST)
         if form.is_valid():
             instance = form.save(commit=False)
-            username = instance.prenom[0] + instance.nom
-            string = username.split(' ')
-            username = '-'.join(string)
-            user = User.objects.create_user(
-                username=username,
-                password="12345678",
-                email="hello@la.com",
-                first_name=instance.nom,
-                last_name=instance.prenom
-            )
-            user.is_staff = True
-            user.save()
-
-            if instance.type == "Chargé de recrutement":
-                cr = ChargeDeRecrutement()
-                cr.nom = instance.nom
-                superieur = ChargeDeRecrutement.objects.filter(id=instance.superieur).first()
-                if superieur:
-                    cr.parent = superieur
-                cr.prenom = instance.prenom
-                cr.type = instance.type
-                cr.mdp = instance.mdp
-                cr.superieur = "---"
-                cr.user = user
-                cr.save()
-            if instance.type == "Business Manager":
-                bm = BusinessManager()
-                superieur = BusinessManager.objects.filter(id=int(instance.superieur)).first()
-                if superieur:
-                    bm.parent = superieur
-                bm.nom = instance.nom
-                bm.prenom = instance.prenom
-                bm.type = instance.type
-                bm.mdp = instance.mdp
-                bm.user = user
-                bm.superieur = "---"
-                bm.save()
-            if instance.type == "Assistant d'agence":
-                aa = AssistantAgence()
-                aa.nom = instance.nom
-                aa.prenom = instance.prenom
-                aa.type = instance.type
-                aa.mdp = instance.mdp
-                aa.user = user
-                aa.save()
-            if instance.type == "Responsable des ressources humaines":
-                rrh = ResponsableRessourceHumaine()
-                rrh.nom = instance.nom
-                rrh.prenom = instance.prenom
-                rrh.type = instance.type
-                rrh.mdp = instance.mdp
-                rrh.user = user
-                rrh.save()
-            if instance.type == "Contrôleur de gestion":
-                cg = ControleurDeGestion()
-                cg.nom = instance.nom
-                cg.prenom = instance.prenom
-                cg.type = instance.type
-                cg.mdp = instance.mdp
-                cg.user = user
-                cg.save()
-            if instance.type == "Administrateur":
-                admin = Administrateur()
-                admin.nom = instance.nom
-                admin.prenom = instance.prenom
-                admin.type = instance.type
-                admin.mdp = instance.mdp
-                admin.user = user
-                admin.save()
+            instance.save()
             return redirect('utilisateur-liste')
     content = {
-        "form": form,
+        "form": form
     }
     return render(request, 'utilisateur_modifier.html', content)
+    
+    
 
 # @login_required(login_url='/login/')
 def utilisateur_creer(request):

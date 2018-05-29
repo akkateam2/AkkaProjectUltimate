@@ -30,6 +30,7 @@ $ python3 -m pip install djangorestframework.
 You may need to upgrade the pip package:
 
 $ sudo pip3 install --upgrade pip
+$ sudo pip3 install psycopg2-binary
 
 -pillow 
 

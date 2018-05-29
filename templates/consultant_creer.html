@@ -41,9 +41,12 @@
                     <!-- form start -->
                     <form class="form-horizontal">
                         <div class="box-body">
+                        
+                            <fieldset>
+     
+                            <legend>Information</legend> <!-- Titre du fieldset --> 
                             <div class="form-group">
                                 <label for="nom" class="col-sm-3 control-label">Nom</label>
-
                                 <div class="col-sm-9">
                                     {{ form.nom }}
                                 </div>
@@ -61,17 +64,60 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
-                                        
                                         {{ form.dateNaissance }}
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                             <div class="form-group">
+                                <label for="nom" class="col-sm-3 control-label">Ville</label>
+                                <div class="col-sm-9">
+                                    {{ form.ville }}
+                                </div>
+                            </div>
+                             <div class="form-group">
                                 <label for="nom" class="col-sm-3 control-label">Adresse</label>
                                 <div class="col-sm-9">
                                     {{ form.adresse }}
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="nom" class="col-sm-3 control-label">Code Postal</label>
+                                <div class="col-sm-9">
+                                    {{ form.codePostal }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nom" class="col-sm-3 control-label">Français</label>
+                                <div class="col-sm-9">
+                                    {{ form.francais }}
+                                </div>  
+                            </div>  
+                            <div class="form-group">
+                                <label for="nom" class="col-sm-3 control-label">Téléphone</label>
+                                <div class="col-sm-9">
+                                    {{ form.telephone }}
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label for="nom" class="col-sm-3 control-label">Email AKKA</label>
+
+                                <div class="col-sm-9">
+                                    {{ form.emailAKKA }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nom" class="col-sm-3 control-label">Email personnel</label>
+
+                                <div class="col-sm-9">
+                                    {{ form.emailPerso }}
+                                </div>
+                            </div>
+                                                 
+                            </fieldset>
+                            
+                            
+                            <fieldset>
+                            <legend>Pieces jointes</legend> <!-- Titre du fieldset --> 
                             <div class="form-group">
                                 <label for="nom" class="col-sm-3 control-label">Photo</label>
                                 <div class="col-sm-9">
@@ -90,32 +136,13 @@
                                     {{ form.dossierCompetence }}
                                 </div>
                             </div>
+                                    
+                            </fieldset>
+                         
+                            <fieldset>
+                            <legend>Données contractuelles</legend> <!-- Titre du fieldset --> 
                             <div class="form-group">
-                                <label for="nom" class="col-sm-3 control-label">Ville</label>
-                                <div class="col-sm-9">
-                                    {{ form.ville }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="nom" class="col-sm-3 control-label">Code Postal</label>
-                                <div class="col-sm-9">
-                                    {{ form.codePostal }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="nom" class="col-sm-3 control-label">Français</label>
-                                <div class="col-sm-9">
-                                    {{ form.francais }}
-                                </div>  
-                            </div> 
-                            <div class="form-group">
-                                <label for="nom" class="col-sm-3 control-label">Téléphone</label>
-                                <div class="col-sm-9">
-                                    {{ form.telephone }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="nom" class="col-sm-3 control-label">AKKA depuis</label>
+                                <label for="nom" class="col-sm-3 control-label">Date d'entrée chez AKKA </label>
                                 <div class="col-sm-9">
                                     <div class="input-group date">
                                         <div class="input-group-addon">
@@ -165,21 +192,13 @@
                                     {{ form.salaire }}
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="nom" class="col-sm-3 control-label">Email AKKA</label>
-
-                                <div class="col-sm-9">
-                                    {{ form.emailAKKA }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="nom" class="col-sm-3 control-label">Email personnel</label>
-
-                                <div class="col-sm-9">
-                                    {{ form.emailPerso }}
-                                </div>
-                            </div>
-                            <div class="form-group">
+                            
+                            
+                            </fieldset>
+                            
+                            <fieldset>
+                            <legend>Interlocuteur</legend> <!-- Titre du fieldset --> 
+                             <div class="form-group">
                                 <label for="nom" class="col-sm-3 control-label">Business Manager</label>
                                 <div class="col-sm-9">
                                     {{ form.businessManager }}
@@ -197,12 +216,31 @@
                                     {{ form.assistantDAgence }}
                                 </div>
                             </div>
+                            
+                            </fieldset>
+                            
+                            <fieldset>
+                            <legend>Formation</legend> <!-- Titre du fieldset -->
                             <div class="form-group">
                                 <label for="nom" class="col-sm-3 control-label">Niveau d'étude</label>
                                 <div class="col-sm-9">
                                     {{ form.niveauDiplome }}
                                 </div>
                             </div>
+                            </fieldset>
+                            
+                            <fieldset>
+                            <legend>Mobilité</legend> <!-- Titre du fieldset -->
+                            <div class="form-group">
+                                <label for="nom" class="col-sm-3 control-label">Mobilité</label>
+                                <div class="col-sm-9">
+                                    
+                                </div>
+                            </div>
+                            
+                            </fieldset>
+                            
+                            
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer">

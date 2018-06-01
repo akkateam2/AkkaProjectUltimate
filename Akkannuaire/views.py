@@ -5,10 +5,20 @@ from django.db.models import Q
 from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
+from datetime import date
+
 
 # Create your views here.
 # @login_required(login_url='/login/')
 def home(request):
+    todaydate = date.today()
+    print("la date aujourd'hui")
+    print(todaydate)
+    consultants = Consultant.objects.all()
+    content = {
+        "consultants": consultants,
+        "todaydate"      : todaydate
+    }
     return render(request, 'base.html')
 
 # @login_required(login_url='/login/')
@@ -73,8 +83,27 @@ def send_email(request, idConsultant=None):
     return render(request, 'send_email.html', content)
     
 # @login_required(login_url='/login/')
+#def consultant_creer(request):
+#    form = ConsultantForm(request.POST or None, request.FILES)
+#    if request.POST:
+#        if form.is_valid():
+#            instance = form.save(commit=False)
+#            instance.save()
+#            return redirect('consultant-liste')
+#    content = {
+#        "form": form
+#   }
+#    return render(request, 'consultant_creer.html', content)
 def consultant_creer(request):
-    form = ConsultantForm(request.POST or None, request.FILES)
+    #consultant = Consultant.objects.filter(id=idConsultant).first()
+    form = ConsultantForm(
+        request.POST or None,
+        request.FILES or None,
+        initial={
+            'businessManager':"",
+            'chargeDeRecrutement':"",
+            'assistantDAgence':"",
+        })
     if request.POST:
         if form.is_valid():
             instance = form.save(commit=False)
@@ -84,6 +113,9 @@ def consultant_creer(request):
         "form": form
     }
     return render(request, 'consultant_creer.html', content)
+
+
+
 
 # @login_required(login_url='/login/')
 def utilisateur_liste(request):

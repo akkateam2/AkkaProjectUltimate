@@ -248,11 +248,18 @@ desired effect
         <!-- Main content -->
         <section class="content container-fluid">
             {% block contenu %}
-                <p><em>Annuaire des consultants</em> </p>
+                <p><em>Annuaire des consultants {{todaydate}}</em> </p>
+               {% for consultant in consultants %}
+                  {% if consultant.dateNaissance.month == todaydate.month and consultant.dateNaissance.day <= consultant.dateNaissance.day %}
+                    <p> happy birthday to {{consultant.nom}} {{consultant.dateNaissance}}</p>
+                  {% endif %}
+
+                {% endfor %}
             {% endblock %}
         </section>
         <!-- /.content -->
     </div>
+    
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
